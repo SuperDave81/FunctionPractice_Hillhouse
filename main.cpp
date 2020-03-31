@@ -1,4 +1,5 @@
-//Practice with Functions Student: David Hillhouse, Teacher: Dr_T
+//Practice with Functions 
+//Student: David Hillhouse, Teacher: Dr_T
 //3-31-2020
 #include "functions.h" //reference the header file 
 
