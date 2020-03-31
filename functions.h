@@ -14,8 +14,8 @@ using namespace std;
 //put prototypes here
 void handleOption(string); //function prototype 
 void showMenu(); 
-void printMulti(int,char);
-string evenOddChecker(int); 
+void calcVel();
+void calcAccel(); 
 int numberReverse(int); 
 void getMinMax(double,double,double);  
 
@@ -27,18 +27,11 @@ void handleOption(string userOption)
     double num1 = 0.0, num2 = 0.0, num3 = 0.0; 
     if(userOption == "A" || userOption == "a")
     {
-      cout << "\nTime to print some Triangle patterns\n";
-      cout << "\nHow Many rows: ";
-      rows = validateInt(rows); //cin >> rows; 
-      cout << "\nWhat char would you like to print: "; 
-      theChar = validateChar(theChar); //cin >> theChar; 
-      printMulti(rows,theChar);//call the printMulti function 
+      calcVel(); //call function 
     }
     else if(userOption == "B" || userOption == "b")
     {
-      cout << "\nIt's Even/Odd time ya'll!" << endl; 
-      num = validateInt(num); //cin >> num; 
-      cout << "Your number is " << evenOddChecker(num) << endl; 
+      calcAccel(); //call function  
     }
     else if(userOption == "C" || userOption == "c")
     {
@@ -80,53 +73,60 @@ void handleOption(string userOption)
 void showMenu()
 {
   cout << "\nMENU" << endl; 
-  cout << "A: print triangle patterns" <<endl; 
-  cout << "B: even odd checker" << endl; 
-  cout << "C: reverse a number" << endl; 
+  cout << "A: Calculate Velocity" <<endl; 
+  cout << "B: Calculate Acceleration" << endl; 
+  cout << "C: Calculate Motion" << endl; 
   cout << "D: get min and max" << endl; 
   cout << "E: Exit" << endl; 
   cout << "X: clear the screen" << endl;  
 }
 //definintion 
-void printMulti(int r,char c)
+void calcVel()
 {
-   for(int i = 0; i <= r; i++)
-   {
-     for(int j=i; j>0; j--)
-     {
-       cout << c; 
-     }
-     cout << endl; 
-   }
-   cout << "\nand\n" << endl; 
-   //new nested for loop to go other way
-   for(int i=r; i >=0; i--)
-   {
-     for(int j=1; j<=i; j++)
-     {
-       cout << c; 
-     }
-     cout << endl; 
-   }
-
+  double ds=0.0; 
+  string dsUnits;
+  double dt=0.0;
+  string dtUnits; 
+	
+	// INPUT
+	cout << "\nPlease enter the unit of measure for ds: ";
+	dsUnits = validateString(dsUnits); //cin >> dsUnits; 
+	cout << "\nPlease enter ds: ";
+	ds = validateDouble(ds); //cin >> ds;
+	cout << "\nPlease enter the unit of measure for dt: ";
+	dtUnits = validateString(dtUnits); //cin >> dtUnits; 
+	cout << "\nPlease enter dt: ";
+	dt = validateDouble(dt); //cin >> dt;  
+	//PROCESS 
+	double v  = ds / dt; 
+	
+	//OUTPUT 
+	cout << "\nVelocity equals ";
+	cout << v << " " << dsUnits << "/" << dtUnits << endl;  
 }
 
-string evenOddChecker(int number)
+void calcAccel()
 {
-  string result = ""; 
-  //determine if number is even/odd assign "odd" or "even"
-  result = ( (number % 2) == 0) ? "even" : "odd"; 
-      /*
-      if( (number % 2) == 0)
-      {
-        result = "even"; 
-      }
-      else if((number % 2) == 1)
-      {
-        result = "odd"; 
-      }
-      */
-  return result;
+  double dv=0.0; 
+  string dvUnits;
+  double dt=0.0;
+  string dtUnits; 
+	
+	// INPUT
+	cout << "\nPlease enter the unit of measure for dv: ";
+	dvUnits = validateString(dvUnits); //cin >> dvUnits; 
+	cout << "\nPlease enter dv: ";
+	dv = validateDouble(dv); //cin >> dv;
+	cout << "\nPlease enter the unit of measure for dt: ";
+	dtUnits = validateString(dtUnits); //cin >> dtUnits; 
+	cout << "\nPlease enter dt: ";
+	dt = validateDouble(dt); //cin >> dt;  
+	//PROCESS 
+	double a  = dv / dt; 
+	
+	//OUTPUT 
+	cout << "\nAcceleration equals ";
+	cout << a << " " << dvUnits << "/" << dtUnits << endl;  
 }
 
 int numberReverse(int number)
